@@ -1,14 +1,16 @@
 name: ClientWorker 
 catch_rules: #转换规则
-    - rule: _ #ClientWorker语法糖，匹配当前域，返回一个域名带端口
+    - rule: localhost:5500 #ClientWorker语法糖，匹配当前域，返回一个域名带端口
       transform_rules: #转换规则，最上面的优先最高
         - search: \#.* #在发送请求时匹配#后内容并移除
           replace: ''
 
-        - search: _ 
+        - search: localhost:5501
           replace: 
-            - ourworld.wuyuan.dev #ip镜像，需要ip HTTPS
-            - ourworld.onrender.com #任意端口
+            - ourworld.wuyuan.dev
+            - ourworld.onrender.com
+            #- web-wuyuancat.cloud.okteto.net
+            #- ourworld.wuyuan.gq-wuyuancat.cloud.okteto.net
 
         - search: \.(js|css)
           action: fetch
